@@ -16,7 +16,8 @@ defmodule ChatAppWeb.Router do
   scope "/", ChatAppWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", RoomController, :index
+    resources("/rooms", RoomController, except: [:index])
   end
 
   # Other scopes may use custom stacks.
