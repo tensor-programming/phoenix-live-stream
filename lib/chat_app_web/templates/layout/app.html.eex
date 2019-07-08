@@ -9,16 +9,24 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
+
+  <div class="d-flex flex-column flex-md row align-items-center p-3 px-md-4 bg-dark">
+    <h3 class="my-0 mr-md-auto font-weight-normal">
+      <%= link "Chat App", to: Routes.room_path(@conn, :new), class: "navbar-brand text-light" %>
+    </h3>
+  </div>
     
-    <main role="main" class="container">
+    
     <%= unless is_nil(get_flash(@conn, :info)) do %>
       <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
     <% end %>
     <%= unless is_nil(get_flash(@conn, :error)) do %>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
     <% end %>
+    <main role="main" class="container">
       <%= render @view_module, @view_template, assigns %>
     </main>
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
