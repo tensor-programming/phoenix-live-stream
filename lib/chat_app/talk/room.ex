@@ -7,6 +7,7 @@ defmodule ChatApp.Talk.Room do
     field :description, :string
     field :name, :string
     field :topic, :string
+    belongs_to :user, ChatApp.Accounts.User
 
     timestamps()
   end

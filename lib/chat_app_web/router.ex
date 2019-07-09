@@ -7,6 +7,7 @@ defmodule ChatAppWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ChatAppWeb.Plugs.SetUser
   end
 
   pipeline :api do
@@ -18,6 +19,9 @@ defmodule ChatAppWeb.Router do
 
     get "/", RoomController, :index
     resources("/rooms", RoomController, except: [:index])
+    resources("/sessions", SessionController, only: [:new, :create])
+    resources "/registration", RegistrationController, only: [:new, :create]
+    delete "/sign_out", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
