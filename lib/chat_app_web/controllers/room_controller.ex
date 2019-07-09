@@ -68,7 +68,7 @@ defmodule ChatAppWeb.RoomController do
     %{params: %{"id" => room_id}} = conn
     room = Talk.get_room!(room_id)
 
-    if AuthUser.can_access(conn.assigns.current_user, room) do
+    if AuthUser.can_access?(conn.assigns.current_user, room) do
       conn
     else
       conn
