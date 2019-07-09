@@ -1,8 +1,9 @@
 <h2><%= @room.name %></h2>
 
 <span><%= @room.description %></span>
-
-<div>
-    <%= link "Edit", to: Routes.room_path(@conn, :edit, @room.id), class: "btn btn-success" %>
-    <%= link "Delete", to: Routes.room_path(@conn, :delete, @room), method: :delete, data: [confirm: "Do you really want to Delete?"], class: "btn btn-danger" %>
-</div>
+<%= if AuthUser.can_access?(@current_user, @room) do %>
+    <div>
+        <%= link "Edit", to: Routes.room_path(@conn, :edit, @room.id), class: "btn btn-success" %>
+        <%= link "Delete", to: Routes.room_path(@conn, :delete, @room), method: :delete, data: [confirm: "Do you really want to Delete?"], class: "btn btn-danger" %>
+    </div>
+<% end %>
