@@ -11,7 +11,8 @@ defmodule ChatApp.Application do
       # Start the Ecto repository
       ChatApp.Repo,
       # Start the endpoint when the application starts
-      ChatAppWeb.Endpoint
+      ChatAppWeb.Endpoint,
+      ChatAppWeb.Presence
       # Starts a worker by calling: ChatApp.Worker.start_link(arg)
       # {ChatApp.Worker, arg},
     ]

@@ -12,6 +12,7 @@ defmodule ChatApp.Accounts.User do
     field :password_confirmation, :string, virtual: true
 
     has_many :rooms, ChatApp.Talk.Room
+    has_many :messages, ChatApp.Talk.Message
 
     timestamps()
   end

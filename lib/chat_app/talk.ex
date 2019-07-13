@@ -1,6 +1,30 @@
 defmodule ChatApp.Talk do
   alias ChatApp.Repo
   alias ChatApp.Talk.Room
+  alias ChatApp.Talk.Message
+
+  import Ecto.Query
+
+  def create_message(user, room, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:messages, room_id: room.id)
+    |> Message.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def list_messages(room_id, limit \\ 20) do
+    query =
+      from msg in Message,
+        join: user in assoc(msg, :user),
+        where: msg.room_id == ^room_id,
+        order_by: [desc: msg.inserted_at],
+        limit: ^limit
+
+    Repo.all(
+      from [msg, user] in query,
+        select: %{body: msg.body, user: %{username: user.username}}
+    )
+  end
 
   def list_rooms do
     Repo.all(Room)
